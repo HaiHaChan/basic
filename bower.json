@@ -1,0 +1,21 @@
+{
+  "name": "basic",
+  "description": "",
+  "main": "",
+  "authors": [
+    "HaiHaChan <tran.thi.hai.ha@framgia.com>"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/HaiHaChan/basic",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "Font-Awesome": "https://github.com/FortAwesome/Font-Awesome.git#^5.2.0"
+  }
+}
