@@ -1,0 +1,10 @@
+{{ Html::style('css/admin/bootstrap.css') }}
+{{ Html::style('css/admin/style.css') }}
+{{ Html::style('assets/admin/css/bootstrap.css') }}
+{{ Html::style('assets/admin/font-awesome/css/font-awesome.css') }}
+{{ Html::style('assets/admin/css/zabuto_calendar.css') }}
+{{ Html::style('assets/admin/js/gritter/css/jquery.gritter.css') }}
+{{ Html::style('assets/admin/lineicons/style.css') }}    
+{{ Html::style('assets/admin/css/style.css') }}
+{{ Html::style('assets/admin/css/style-responsive.css') }}
+{{ Html::style('css/admin/admin.css') }}
