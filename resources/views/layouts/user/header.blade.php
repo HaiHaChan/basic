@@ -14,11 +14,13 @@
         <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav main_nav">
                 <li class="active"><a href="#"><span class="fa fa-home desktop-home"></span><span class="mobile-show">Home</span></a></li>
-                <li><a href="#">Technology</a></li>
-                <li class="dropdown"> <a href="#">Mobile</a></li>
-                <li><a href="#">Laptops</a></li>
-                <li><a href="#">Tablets</a></li>
-                <li><a href="#">Contact Us</a></li>
+
+                @if (isset($categories) && !empty($categories))
+                    @foreach ($categories as $category)
+                        <li><a href="#" id="{{ $category->id }}">{{ $category->name }}</a></li>
+                    @endforeach
+                @endif
+
                 <li><a href="{{ route('logout') }}"
                     onclick="event.preventDefault();
                              document.getElementById('logout-form').submit();">
