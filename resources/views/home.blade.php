@@ -40,34 +40,14 @@
 
 <section id="contentSection">
     <div class="row">
+    @if (isset($categories) && !empty($categories))
         <div class="col-lg-8 col-md-8 col-sm-8">
             <div class="left_content">
-                <div class="single_post_content">
-                    <h2><span>Business</span></h2>
-                    <div class="single_post_content_left">
-                        <ul class="business_catgnav  wow fadeInDown">
-                            <li>
-                                <figure class="bsbig_fig"> <a href="#" class="featured_img"> <img alt="" src="{{ asset('images/featured_img1.jpg') }}"> <span class="overlay"></span> </a>
-                                    <figcaption> <a href="#">Proin rhoncus consequat nisl eu ornare mauris</a> </figcaption>
-                                    <p>Nunc tincidunt, elit non cursus euismod, lacus augue ornare metus, egestas imperdiet nulla nisl quis mauris. Suspendisse a phare...</p>
-                                </figure>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="single_post_content_right">
-                        <ul class="spost_nav">
-                            <li>
-                                <div class="media wow fadeInDown"> <a href="#" class="media-left"> <img alt="" src="{{ asset('images/post_img1.jpg') }}"> </a>
-                                    <div class="media-body"> <a href="#" class="catg_title"> Aliquam malesuada diam eget turpis varius 1</a> </div>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
+                @for($i = 0; $i < count($categories) -1; $i += 2)
                 <div class="fashion_technology_area">
                     <div class="fashion">
                         <div class="single_post_content">
-                            <h2><span>Fashion</span></h2>
+                            <h2><span>{{ $categories[$i]->name }}</span></h2>
                             <ul class="business_catgnav wow fadeInDown">
                                 <li>
                                     <figure class="bsbig_fig"> <a href="#" class="featured_img"> <img alt="" src="{{ asset('images/featured_img2.jpg') }}"> <span class="overlay"></span> </a>
@@ -76,18 +56,22 @@
                                     </figure>
                                 </li>
                             </ul>
+                            @if (isset($categories[$i]->posts) && !empty($categories[$i]->posts))
                             <ul class="spost_nav">
+                                @foreach ($categories[$i]->posts->take(2) as $post)
                                 <li>
                                     <div class="media wow fadeInDown"> <a href="#" class="media-left"> <img alt="" src="{{ asset('images/post_img1.jpg') }}"> </a>
-                                        <div class="media-body"> <a href="#" class="catg_title"> Aliquam malesuada diam eget turpis varius 1</a> </div>
+                                        <div class="media-body"> <a href="#" class="catg_title">{{ $post->title }}</a> </div>
                                     </div>
                                 </li>
+                                @endforeach
                             </ul>
+                            @endif
                         </div>
                     </div>
                     <div class="technology">
                         <div class="single_post_content">
-                            <h2><span>Technology</span></h2>
+                            <h2><span>{{ $categories[$i + 1]-> name }}</span></h2>
                             <ul class="business_catgnav">
                               <li>
                                 <figure class="bsbig_fig wow fadeInDown"> <a href="#" class="featured_img"> <img alt="" src="{{ asset('images/featured_img3.jpg') }}"> <span class="overlay"></span> </a>
@@ -96,19 +80,24 @@
                                 </figure>
                               </li>
                             </ul>
+                            @if (isset($categories[$i + 1]->posts) && !empty($categories[$i]->posts))
                             <ul class="spost_nav">
+                                @foreach ($categories[$i + 1]->posts->take(2) as $post)
                                 <li>
-                                    <div class="media wow fadeInDown"> 
-                                        <a href="#" class="media-left"> <img alt="" src="{{ asset('images/post_img1.jpg') }}"> </a>
-                                        <div class="media-body"> <a href="#" class="catg_title"> Aliquam malesuada diam eget turpis varius 1</a> </div>
+                                    <div class="media wow fadeInDown"> <a href="#" class="media-left"> <img alt="" src="{{ asset('images/post_img1.jpg') }}"> </a>
+                                        <div class="media-body"> <a href="#" class="catg_title">{{ $post->title }}</a> </div>
                                     </div>
                                 </li>
+                                @endforeach
                             </ul>
+                            @endif
                         </div>
                     </div>
                 </div>
+                @endfor
             </div>
         </div>
+        @endif
         <div class="col-lg-4 col-md-4 col-sm-4">
             <aside class="right_content">
                 <div class="single_sidebar">
@@ -126,17 +115,15 @@
                         <li role="presentation" class="active"><a href="#category" aria-controls="home" role="tab" data-toggle="tab">Category</a></li>
                     </ul>
                     <div class="tab-content">
-                        <div role="tabpanel" class="tab-pane active" id="category">
-                            <ul>
-                                <li class="cat-item"><a href="#">Sports</a></li>
-                                <li class="cat-item"><a href="#">Fashion</a></li>
-                                <li class="cat-item"><a href="#">Business</a></li>
-                                <li class="cat-item"><a href="#">Technology</a></li>
-                                <li class="cat-item"><a href="#">Games</a></li>
-                                <li class="cat-item"><a href="#">Life &amp; Style</a></li>
-                                <li class="cat-item"><a href="#">Photography</a></li>
-                            </ul>
-                        </div>
+                        @if (isset($categories) && !empty($categories))
+                            <div role="tabpanel" class="tab-pane active" id="category">
+                                <ul>
+                                    @foreach ($categories as $category)
+                                        <li class="cat-item"><a href="#">{{ $category->name }}</a></li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        @endif
                         <div role="tabpanel" class="tab-pane" id="video">
                             <div class="vide_area">
                                 <iframe width="100%" height="250" src="http://www.youtube.com/embed/h5QWbURNEpA?feature=player_detailpage" frameborder="0" allowfullscreen></iframe>
